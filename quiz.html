@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trắc nghiệm Tiếng Đức A1 - Buổi 1</title>
+  <meta name="description" content="Bài tập trắc nghiệm ôn tập tiếng Đức A1 Buổi 1. Ôn tập bảng chữ cái, phát âm, đại từ nhân xưng và chia động từ sein/haben.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styling for the Back to lesson tab */
+    .tab-btn {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <div class="flag-logo">
+        <div class="flag-stripe stripe-black"></div>
+        <div class="flag-stripe stripe-red"></div>
+        <div class="flag-stripe stripe-gold"></div>
+      </div>
+      <span class="logo-text">Deutsch A1</span>
+    </div>
+    <div class="controls-container">
+      <div class="tts-status" id="ttsStatus" title="Trạng thái giọng đọc phát âm chuẩn">
+        <span class="tts-indicator"></span> Đang tải giọng đọc...
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="nav-tabs">
+    <!-- <a href="index.html" class="tab-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Quay lại Bài học
+    </a> -->
+    <a href="quiz.html" class="tab-btn active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+      5. Bài tập trắc nghiệm
+    </a>
+  </nav>
+
+  <!-- MAIN AREA -->
+  <main>
+    <div class="section-title">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+      Bài tập trắc nghiệm ôn tập (Übung)
+    </div>
+    <p class="section-subtitle">Đánh giá nhanh kiến thức đã học trong Buổi 1 (Bảng chữ cái, cách phát âm và động từ sein/haben).</p>
+    
+    <div class="quiz-container">
+      
+      <!-- Question screen -->
+      <div id="quizQuestionView">
+        <div class="quiz-header">
+          <span class="quiz-title">Trắc nghiệm Buổi 1</span>
+          <span class="quiz-progress-text" id="quizProgress">Câu 1/10</span>
+        </div>
+        
+        <div class="quiz-question-box">
+          <p class="quiz-question-text" id="quizQuestionText">Loading question...</p>
+          <div class="quiz-options" id="quizOptions">
+            <!-- Dynamically populated -->
+          </div>
+          
+          <div class="quiz-feedback" id="quizFeedback"></div>
+        </div>
+        
+        <div class="quiz-actions">
+          <button class="btn-primary" id="quizNextBtn" style="display: none;">Câu tiếp theo</button>
+        </div>
+      </div>
+
+      <!-- Result screen -->
+      <div id="quizResultView" class="quiz-result" style="display: none;">
+        <h3 style="font-size: 1.8rem;">Kết quả luyện tập</h3>
+        <div class="result-score" id="quizFinalScore">0/10</div>
+        <p class="result-feedback-text" id="quizFeedbackMsg">Tuyệt vời!</p>
+        <div class="welcome-buttons" style="justify-content: center; margin-top: 1rem;">
+          <button class="btn-primary" id="quizRestartBtn">Luyện tập lại</button>
+          <a href="index.html" class="btn-secondary" style="text-decoration: none; display: inline-flex; align-items: center;">Quay lại bài học</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Học tiếng Đức A1 cùng <strong>Cô Trần Thị Thu Hiền</strong> (ĐT: 0826273766)</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">Được thiết kế rõ ràng, khoa học dưới dạng sách giáo khoa điện tử hỗ trợ nghe trực tuyến.</p>
+  </footer>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

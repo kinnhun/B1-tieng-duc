@@ -178,68 +178,7 @@ const PRONUNCIATIONS = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-  {
-    question: 'Động từ "sein" đi với ngôi "Du" chia như thế nào?',
-    options: ['bin', 'bist', 'ist', 'sind'],
-    correct: 1,
-    hint: 'Du + bist'
-  },
-  {
-    question: 'Cụm từ "Guten Abend!" có nghĩa là gì?',
-    options: ['Chào buổi sáng!', 'Chào buổi chiều!', 'Chào buổi tối!', 'Tạm biệt!'],
-    correct: 2,
-    hint: 'Abend có nghĩa là buổi tối.'
-  },
-  {
-    question: 'Từ "Schule" phát âm âm đầu "sch" như thế nào?',
-    options: ['Giống âm "s" nhẹ', 'Giống âm "sh" chu môi dày', 'Giống âm "ch"', 'Giống âm "kh"'],
-    correct: 1,
-    hint: 'sch đọc giống âm sh tiếng Anh.'
-  },
-  {
-    question: 'Động từ "haben" đi với ngôi "Er/es/sie" chia như thế nào?',
-    options: ['habe', 'hast', 'hat', 'haben'],
-    correct: 2,
-    hint: 'Er / es / sie hat.'
-  },
-  {
-    question: '"Ich komme aus Vietnam" nghĩa là gì?',
-    options: ['Tôi sống ở Việt Nam.', 'Tôi đến từ Việt Nam.', 'Tôi học tiếng Đức.', 'Tôi là sinh viên.'],
-    correct: 1,
-    hint: 'komme aus = đến từ.'
-  },
-  {
-    question: 'Từ "heute" phát âm vần "eu" như thế nào?',
-    options: ['/ai/', '/i dài/', '/ui/', '/oi/'],
-    correct: 3,
-    hint: 'eu phát âm giống âm /oi/.'
-  },
-  {
-    question: 'Để hỏi tên một cách thân mật, ta dùng câu nào?',
-    options: ['Wie geht’s?', 'Wie heißt du?', 'Ich heiße Hiền.', 'Mein Name ist Hiền.'],
-    correct: 1,
-    hint: 'Wie heißt du = Bạn tên gì?'
-  },
-  {
-    question: 'Động từ "sein" đi với ngôi "Ihr" chia như thế nào?',
-    options: ['sind', 'seid', 'ist', 'bist'],
-    correct: 1,
-    hint: 'Ihr seid.'
-  },
-  {
-    question: 'Cách phát âm nguyên âm đôi trong từ "mein" và "drei" là gì?',
-    options: ['/ie/', '/oi/', '/ai/', '/au/'],
-    correct: 2,
-    hint: 'ei phát âm thành /ai/.'
-  },
-  {
-    question: 'Từ "Straße" phát âm âm đầu "st" như thế nào?',
-    options: ['/st/ bình thường', '/sht/ (cong lưỡi chu môi)', '/ts/', '/s/'],
-    correct: 1,
-    hint: 'st ở đầu từ đọc giống /sht/.'
-  }
-];
+const QUIZ_TOTAL_QUESTIONS = 30;
 
 // --- APP STATE ---
 
@@ -330,7 +269,6 @@ function initApp() {
   renderConjugations();
   renderPhrases();
   renderPronunciations();
-  setupQuiz();
   setupExercise();
   updateProgressUI();
   
@@ -338,13 +276,18 @@ function initApp() {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const tabId = btn.getAttribute('data-tab');
-      switchTab(tabId);
+      if (tabId) {
+        e.preventDefault();
+        switchTab(tabId);
+      }
     });
   });
 
   // Welcome page buttons
   document.getElementById('startLearnBtn').addEventListener('click', () => switchTab('alphabet'));
-  document.getElementById('startQuizBtn').addEventListener('click', () => switchTab('quiz'));
+  document.getElementById('startQuizBtn').addEventListener('click', () => {
+    window.location.href = 'quiz.html';
+  });
 }
 
 function saveProgress() {
@@ -375,7 +318,7 @@ function updateProgressUI() {
   document.getElementById('progressConjugation').textContent = `${conjPct}%`;
   document.getElementById('progressPhrases').textContent = `${phrasePct}%`;
   document.getElementById('progressPronunciation').textContent = `${pronPct}%`;
-  document.getElementById('progressHighscore').textContent = `${state.progress.quizHighscore}/${QUIZ_QUESTIONS.length}`;
+  document.getElementById('progressHighscore').textContent = `${state.progress.quizHighscore}/${QUIZ_TOTAL_QUESTIONS}`;
   
   const mainBar = document.getElementById('mainProgressBar');
   if (mainBar) {
@@ -664,134 +607,6 @@ function renderPronunciations() {
   });
 }
 
-// 6. QUIZ LOGIC
-function setupQuiz() {
-  const restartBtn = document.getElementById('quizRestartBtn');
-  const nextBtn = document.getElementById('quizNextBtn');
-  
-  if (restartBtn) restartBtn.addEventListener('click', restartQuiz);
-  if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
-}
-
-function startQuiz() {
-  state.quizActiveQuestion = 0;
-  state.quizScore = 0;
-  state.quizAnswers = [];
-  state.quizCompleted = false;
-  
-  document.getElementById('quizQuestionView').style.display = 'block';
-  document.getElementById('quizResultView').style.display = 'none';
-  
-  showQuestion();
-}
-
-function showQuestion() {
-  const currentQ = QUIZ_QUESTIONS[state.quizActiveQuestion];
-  
-  document.getElementById('quizProgress').textContent = `Câu ${state.quizActiveQuestion + 1}/${QUIZ_QUESTIONS.length}`;
-  document.getElementById('quizQuestionText').textContent = currentQ.question;
-  
-  const optionsContainer = document.getElementById('quizOptions');
-  optionsContainer.innerHTML = '';
-  
-  const feedbackEl = document.getElementById('quizFeedback');
-  feedbackEl.style.display = 'none';
-  
-  const nextBtn = document.getElementById('quizNextBtn');
-  nextBtn.style.display = 'none'; 
-
-  currentQ.options.forEach((opt, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.innerHTML = `
-      <span>${opt}</span>
-      <span class="option-icon"></span>
-    `;
-    
-    btn.addEventListener('click', () => selectOption(idx));
-    optionsContainer.appendChild(btn);
-  });
-}
-
-function selectOption(selectedIdx) {
-  const currentQ = QUIZ_QUESTIONS[state.quizActiveQuestion];
-  const optionsContainer = document.getElementById('quizOptions');
-  const buttons = optionsContainer.querySelectorAll('.option-btn');
-  const feedbackEl = document.getElementById('quizFeedback');
-  const nextBtn = document.getElementById('quizNextBtn');
-
-  buttons.forEach(btn => btn.disabled = true);
-  
-  state.quizAnswers.push(selectedIdx);
-
-  if (selectedIdx === currentQ.correct) {
-    buttons[selectedIdx].classList.add('correct');
-    buttons[selectedIdx].querySelector('.option-icon').innerHTML = '✓';
-    
-    feedbackEl.className = 'quiz-feedback correct';
-    feedbackEl.innerHTML = `Chính xác! ${currentQ.hint ? `Gợi ý: ${currentQ.hint}` : ''}`;
-    state.quizScore++;
-  } else {
-    buttons[selectedIdx].classList.add('wrong');
-    buttons[selectedIdx].querySelector('.option-icon').innerHTML = '✗';
-    buttons[currentQ.correct].classList.add('correct');
-    
-    feedbackEl.className = 'quiz-feedback wrong';
-    feedbackEl.innerHTML = `Chưa đúng! Đáp án đúng là: <strong>${currentQ.options[currentQ.correct]}</strong>.<br>${currentQ.hint ? `Gợi ý: ${currentQ.hint}` : ''}`;
-  }
-  
-  feedbackEl.style.display = 'block';
-  
-  nextBtn.textContent = state.quizActiveQuestion < QUIZ_QUESTIONS.length - 1 ? 'Câu tiếp theo' : 'Hoàn thành';
-  nextBtn.style.display = 'block';
-}
-
-function nextQuestion() {
-  state.quizActiveQuestion++;
-  
-  if (state.quizActiveQuestion < QUIZ_QUESTIONS.length) {
-    showQuestion();
-  } else {
-    showQuizResults();
-  }
-}
-
-function showQuizResults() {
-  document.getElementById('quizQuestionView').style.display = 'none';
-  document.getElementById('quizResultView').style.display = 'block';
-  
-  const scorePercent = Math.round((state.quizScore / QUIZ_QUESTIONS.length) * 100);
-  document.getElementById('quizFinalScore').textContent = `${state.quizScore}/${QUIZ_QUESTIONS.length}`;
-  
-  let msg = '';
-  if (scorePercent === 100) {
-    msg = 'Tuyệt vời! Bạn đã nắm vững toàn bộ kiến thức Buổi 1. Hãy tiếp tục phát huy nhé!';
-  } else if (scorePercent >= 80) {
-    msg = 'Rất tốt! Bạn hiểu bài rất nhanh, chỉ cần ôn lại một chút thôi.';
-  } else if (scorePercent >= 50) {
-    msg = 'Khá ổn! Hãy xem lại các phần phát âm hoặc chia động từ và thử lại nhé.';
-  } else {
-    msg = 'Bạn cần xem lại bài giảng và luyện nghe nhiều hơn. Đừng nản chí nhé!';
-  }
-  
-  document.getElementById('quizFeedbackMsg').textContent = msg;
-  
-  if (state.quizScore > state.progress.quizHighscore) {
-    state.progress.quizHighscore = state.quizScore;
-    saveProgress();
-  }
-}
-
-function restartQuiz() {
-  startQuiz();
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   initApp();
-  
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    if (btn.getAttribute('data-tab') === 'quiz') {
-      btn.addEventListener('click', startQuiz);
-    }
-  });
 });

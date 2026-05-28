@@ -166,6 +166,7 @@ header {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  text-decoration: none;
 }
 .tab-btn:hover {
   color: var(--text-main);
@@ -277,6 +278,7 @@ main {
   align-items: center;
   gap: 0.4rem;
   transition: var(--transition);
+  text-decoration: none;
 }
 .btn-primary:hover {
   background: var(--bg-hover);
@@ -293,6 +295,7 @@ main {
   cursor: pointer;
   border-radius: var(--radius-sm);
   transition: var(--transition);
+  text-decoration: none;
 }
 .btn-secondary:hover {
   background: var(--bg-hover);
