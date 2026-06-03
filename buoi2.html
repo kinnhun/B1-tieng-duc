@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tiếng Đức A1 - Buổi 2 (Số Đếm & Từ Để Hỏi)</title>
+  <meta name="description" content="Tài liệu học tiếng Đức A1 Buổi 2. Ôn tập bài cũ, học số đếm từ 0 đến 20, các từ để hỏi Wie, Wo, Woher, đất nước và ngôn ngữ.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional inline styles for Lesson 2 */
+    .grammar-note-box {
+      background: var(--bg-highlight);
+      border-left: 4px solid #000000;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-top: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .grammar-note-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .dictat-box {
+      margin-top: 1.5rem;
+      background: var(--bg-page);
+      border: 2px dashed #000000;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+    .dictat-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <div class="flag-logo">
+        <div class="flag-stripe stripe-black"></div>
+        <div class="flag-stripe stripe-red"></div>
+        <div class="flag-stripe stripe-gold"></div>
+      </div>
+      <span class="logo-text">Deutsch A1</span>
+    </div>
+    <div class="controls-container">
+      <!-- Lesson selector dropdown -->
+      <select class="form-input" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; font-weight: 700; border: 1.5px solid #000; border-radius: var(--radius-sm); cursor: pointer;" onchange="window.location.href=this.value">
+        <option value="index.html">Buổi 1</option>
+        <option value="buoi2.html" selected>Buổi 2</option>
+      </select>
+      <div class="tts-status" id="ttsStatus" title="Trạng thái giọng đọc phát âm chuẩn">
+        <span class="tts-indicator"></span> Đang tải giọng đọc...
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      Tổng quan
+    </button>
+    <button class="tab-btn" data-tab="review">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5" />
+      </svg>
+      1. Ôn tập Buổi 1
+    </button>
+    <button class="tab-btn" data-tab="numbers">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+      </svg>
+      2. Số đếm 0 - 20
+    </button>
+    <button class="tab-btn" data-tab="dictat">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+      </svg>
+      3. Luyện nghe viết số
+    </button>
+    <button class="tab-btn" data-tab="wFragen">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      4. Từ để hỏi
+    </button>
+    <button class="tab-btn" data-tab="countries">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2a2.5 2.5 0 002.5-2.5V14a2 2 0 012-2h.055M11 20.055V18a2 2 0 00-2-2h-.5a2 2 0 01-2-2v-1.5a2.5 2.5 0 012.5-2.5h.5m8.5 8.5V3.93" />
+      </svg>
+      5. Quốc gia & Ngôn ngữ
+    </button>
+  </nav>
+
+  <!-- MAIN AREA -->
+  <main>
+    
+    <!-- DASHBOARD TAB -->
+    <div id="dashboardTab" class="tab-content active">
+      <div class="dashboard-grid">
+        <div class="welcome-card">
+          <h1>Lộ trình học <span>Buổi 2</span></h1>
+          <p>Chào mừng bạn đến với nội dung bài học Tiếng Đức A1 - Buổi 2. Ở bài học này, chúng ta sẽ ôn tập nền tảng buổi trước và mở rộng thêm kiến thức giao tiếp cốt lõi về số đếm, hỏi đáp địa điểm và ngôn ngữ:</p>
+          
+          <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Phần 1 (Ôn tập):</strong> Xem lại bảng chữ cái và làm Quiz ôn tập giao tiếp cơ bản của Buổi 1.</li>
+            <li><strong>Phần 2 (Mới):</strong> Làm quen số đếm từ 0 đến 20 tiếng Đức với giọng đọc mẫu chuẩn.</li>
+            <li><strong>Phần 3 (Luyện tập):</strong> Mini Game "Nghe & Viết số (Zahlen Diktat)" để nhớ lâu hơn.</li>
+            <li><strong>Phần 4 (Mới):</strong> Bộ ba từ để hỏi W-Fragen thông dụng nhất: <em>Wie</em>, <em>Wo</em>, <em>Woher</em>.</li>
+            <li><strong>Phần 5 (Mới):</strong> Cách giới thiệu nguồn gốc đất nước và ngôn ngữ của bạn.</li>
+          </ul>
+
+          <div class="welcome-buttons">
+            <button class="btn-primary" id="startLearnBtn">
+              Bắt đầu bài học
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <a href="index.html" class="btn-secondary">Học lại Buổi 1</a>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div>
+            <h2>Tiến độ Buổi 2</h2>
+            <div class="progress-stats">
+              <div>
+                <div class="stat-row">
+                  <span class="stat-label">1. Ôn tập Buổi 1</span>
+                  <span class="stat-value" id="progressReview">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">2. Số đếm 0 - 20</span>
+                  <span class="stat-value" id="progressNumbers">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">3. Luyện nghe viết số</span>
+                  <span class="stat-value" id="progressDictatLabel">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">4. Từ để hỏi W-Fragen</span>
+                  <span class="stat-value" id="progressWFragen">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">5. Quốc gia & Ngôn ngữ</span>
+                  <span class="stat-value" id="progressCountries">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="stat-row" style="margin-top: 1rem; border-top: 1px solid #000000; padding-top: 1rem;">
+              <span class="stat-label">Điểm nghe viết số (Diktat):</span>
+              <span class="stat-value" id="progressDictat">0/0</span>
+            </div>
+            <div class="progress-bar-outer">
+              <div class="progress-bar-inner" id="mainProgressBar"></div>
+            </div>
+            <p id="welcomeProgressText" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right;">Bạn đã hoàn thành 0% lộ trình</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: REVIEW -->
+    <div id="reviewTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5" />
+        </svg>
+        Ôn tập Bảng chữ cái & Giới thiệu bản thân
+      </div>
+      <p class="section-subtitle">Hãy dành 5 phút nghe lại bảng chữ cái và ôn tập mẫu câu tự giới thiệu bản thân trước khi vào bài mới.</p>
+      
+      <h3 style="margin-bottom: 0.75rem; font-family: var(--font-serif);">Bảng chữ cái tiếng Đức</h3>
+      <div class="alphabet-grid" id="reviewAlphabetGrid">
+        <!-- Injected via app2.js -->
+      </div>
+
+      <!-- INTERACTIVE REVIEW QUIZ -->
+      <div class="quiz-container" style="margin-top: 2rem; max-width: 100%; border: 2px dashed #000;">
+        <div class="quiz-header" style="border-bottom: 1.5px solid #000; margin-bottom: 1rem;">
+          <span class="quiz-title" style="font-size: 1.15rem;">Quiz Ôn Tập Nhanh Buổi 1</span>
+          <span class="quiz-progress-text" id="reviewQuizProgress" style="font-size: 0.8rem; font-family: monospace;">Câu 1/15</span>
+        </div>
+        
+        <div id="reviewQuizQuestionView">
+          <div class="quiz-question-box" style="padding: 0;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <p class="quiz-question-text" id="reviewQuizQuestionText" style="font-size: 1.1rem; font-weight: 700; margin: 0;">Loading question...</p>
+              <button class="phrase-speak-btn" id="reviewQuizSpeakQ" style="display: none; padding: 0.25rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 12px; height: 12px;">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="quiz-options" id="reviewQuizOptions">
+              <!-- Dynamically populated -->
+            </div>
+            
+            <div class="quiz-feedback" id="reviewQuizFeedback" style="display: none; margin-top: 1rem; padding: 0.75rem;"></div>
+          </div>
+          
+          <div class="quiz-actions" style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+            <button class="btn-primary" id="reviewQuizNextBtn" style="display: none;">Câu tiếp theo</button>
+          </div>
+        </div>
+
+        <!-- Result screen for review quiz -->
+        <div id="reviewQuizResultView" class="quiz-result" style="display: none; text-align: center; padding: 1rem 0;">
+          <h4 style="font-size: 1.4rem; font-family: var(--font-serif); margin-bottom: 0.5rem;">Kết quả ôn tập</h4>
+          <div class="result-score" id="reviewQuizFinalScore" style="font-size: 2.5rem; font-weight: 800; border: 2px solid #000; display: inline-block; padding: 0.25rem 1.5rem; margin-bottom: 0.5rem;">0/15</div>
+          <p class="result-feedback-text" id="reviewQuizFeedbackMsg" style="font-size: 0.95rem; margin-bottom: 1rem;">Tuyệt vời!</p>
+          <button class="btn-primary" id="reviewQuizRestartBtn" style="margin: 0 auto;">Luyện tập lại</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: NUMBERS -->
+    <div id="numbersTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+        </svg>
+        Số đếm từ 0 đến 20 (Zahlen 0 - 20)
+      </div>
+      <p class="section-subtitle">Học cách viết và phát âm các số từ 0 tới 20. Bấm vào thẻ số để nghe phát âm mẫu.</p>
+
+      <div class="alphabet-grid" id="numbersGrid">
+        <!-- Injected via app2.js -->
+      </div>
+
+    </div>
+
+    <!-- TAB 3: DICTAT GAME -->
+    <div id="dictatTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+        Luyện nghe & Viết số (Zahlen Diktat)
+      </div>
+      <p class="section-subtitle">Luyện tập nghe phát âm và tự gõ lại số bằng chữ số hoặc bằng chữ để ghi nhớ sâu hơn.</p>
+
+      <div class="dictat-box" style="margin-top: 1rem;">
+        <h3 class="exercise-title">Mini Game: Nghe & Viết số</h3>
+        <p class="exercise-desc">Bấm nút loa để nghe số phát âm ngẫu nhiên bằng tiếng Đức, sau đó điền chữ số hoặc từ tiếng Đức tương ứng để kiểm tra kết quả.</p>
+        
+        <div class="dictat-inputs">
+          <button class="btn-primary" id="dictatPlayBtn" style="padding: 0.5rem 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="margin-right: 0.25rem;">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            Nghe số ngẫu nhiên
+          </button>
+          
+          <input type="text" id="dictatInput" class="form-input" style="width: 150px; text-align: center; font-size: 1.1rem; font-weight: bold;" placeholder="Ví dụ: 7 hoặc sieben" disabled>
+          
+          <button class="btn-secondary" id="dictatCheckBtn" style="padding: 0.5rem 1rem;" disabled>Kiểm tra</button>
+        </div>
+        
+        <div id="dictatScoreText" style="font-weight: 700; margin-bottom: 0.5rem; font-size: 1.1rem;">Điểm số: 0/0</div>
+        <div class="quiz-feedback" id="dictatFeedback" style="display: none; max-width: 500px; margin: 0 auto;"></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: W-FRAGEN -->
+    <div id="wFragenTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Từ để hỏi: Wie, Wo, Woher (W-Fragen)
+      </div>
+      <p class="section-subtitle">Cách sử dụng từ để hỏi bắt đầu bằng chữ "W" trong hội thoại cơ bản. Nhấp vào mẫu câu hỏi để nghe cả câu hỏi và trả lời.</p>
+
+      <div class="grammar-note-box">
+        <div class="grammar-note-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Quy tắc ngữ pháp quan trọng: Vị trí của Động từ
+        </div>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+          Trong câu hỏi có từ để hỏi (W-Fragen), động từ đã được chia <strong>luôn luôn đứng ở vị trí thứ hai</strong> trong câu. 
+          Chủ ngữ (đại từ nhân xưng) sẽ đứng ngay sau động từ (vị trí thứ ba).
+          <br>
+          <span style="font-family: monospace; font-weight: 700; color: #000;">Ví dụ: Wo (1) + wohnst (2 - Verb) + du (3)?</span>
+        </p>
+      </div>
+
+      <div class="rules-container" id="wFragenContainer">
+        <!-- Injected via app2.js -->
+      </div>
+    </div>
+
+    <!-- TAB 4: COUNTRIES & LANGUAGES -->
+    <div id="countriesTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2a2.5 2.5 0 002.5-2.5V14a2 2 0 012-2h.055M11 20.055V18a2 2 0 00-2-2h-.5a2 2 0 01-2-2v-1.5a2.5 2.5 0 012.5-2.5h.5m8.5 8.5V3.93" />
+        </svg>
+        Đất nước & Ngôn ngữ (Länder und Sprachen)
+      </div>
+      <p class="section-subtitle">Tìm hiểu cách gọi tên quốc gia và ngôn ngữ tương ứng trong tiếng Đức. Bấm vào thẻ để nghe phát âm cả câu ví dụ.</p>
+
+      <div class="grammar-note-box" style="border-left-color: #555555;">
+        <div class="grammar-note-title">
+          💡 Chú ý giới từ nguồn gốc (Herkunft): "aus" hay "aus der"?
+        </div>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+          - Hầu hết các quốc gia trong tiếng Đức không có giống (article). Ta dùng trực tiếp giới từ: <strong>komme aus + [Tên nước]</strong>. (Ví dụ: aus Vietnam, aus Deutschland).
+          <br>
+          - Một số ít quốc gia có giống cái (feminine), tiêu biểu là <strong>die Schweiz</strong> (Thụy Sĩ) hay <strong>die Türkei</strong> (Thổ Nhĩ Kỳ). Ta phải chia về cách Dativ: <strong>komme aus der Schweiz</strong>.
+        </p>
+      </div>
+
+      <div class="phrases-grid" id="countriesGrid">
+        <!-- Injected via app2.js -->
+      </div>
+
+      <!-- DYNAMIC BUILDER FOR COUNTRIES -->
+      <div class="exercise-container">
+        <h3 class="exercise-title">Tập nói: Giới thiệu quốc gia & ngôn ngữ</h3>
+        <p class="exercise-desc">Chọn quốc gia bạn muốn, hệ thống sẽ tự động ghép câu tiếng Đức chuẩn và đọc lên cho bạn luyện nghe.</p>
+        
+        <div class="form-group" style="max-width: 300px; margin-bottom: 1.25rem;">
+          <label class="form-label" for="selectCountry">Chọn quốc gia:</label>
+          <select id="selectCountry" class="form-input" style="cursor: pointer;">
+            <!-- Options dynamically loaded -->
+          </select>
+        </div>
+
+        <div class="exercise-preview-box">
+          <div class="exercise-preview-header">Câu giới thiệu tiếng Đức hoàn chỉnh:</div>
+          <p class="exercise-preview-text" id="builderPreviewText" style="font-family: var(--font-serif);">
+            <span id="spanFlag" style="font-size: 1.5rem; vertical-align: middle; border: none; min-width: auto; padding: 0;">🇻🇳</span>
+            Ich komme <span id="spanPrep">aus</span> <span id="spanCountry">Vietnam</span>.<br>
+            Ich spreche <span id="spanLanguage">Vietnamesisch</span>.
+          </p>
+          <button class="btn-primary exercise-speak-btn" id="builderSpeakBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            Phát âm đoạn giới thiệu này
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Học tiếng Đức A1 cùng <strong>Cô Trần Thị Thu Hiền</strong> (ĐT: 0826273766)</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">Được thiết kế rõ ràng, khoa học dưới dạng sách giáo khoa điện tử hỗ trợ nghe trực tuyến.</p>
+  </footer>
+
+  <script src="app2.js"></script>
+</body>
+</html>
