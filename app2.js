@@ -194,6 +194,7 @@ let state = {
     numbersVisited: new Set(),
     wFragenVisited: new Set(),
     countriesVisited: new Set(),
+    listeningVisited: new Set(),
     dictatScore: 0,
     dictatTotal: 0
   }
@@ -258,6 +259,7 @@ function initApp() {
       state.progress.numbersVisited = new Set(parsed.numbersVisited || []);
       state.progress.wFragenVisited = new Set(parsed.wFragenVisited || []);
       state.progress.countriesVisited = new Set(parsed.countriesVisited || []);
+      state.progress.listeningVisited = new Set(parsed.listeningVisited || []);
       state.progress.dictatScore = parsed.dictatScore || 0;
       state.progress.dictatTotal = parsed.dictatTotal || 0;
     } catch (e) {
@@ -273,6 +275,7 @@ function initApp() {
   setupDictatGame();
   setupCountryBuilder();
   setupReviewQuiz();
+  setupListeningExercises();
   updateProgressUI();
   
   // Tab navigation
@@ -296,6 +299,7 @@ function saveProgress() {
     numbersVisited: Array.from(state.progress.numbersVisited),
     wFragenVisited: Array.from(state.progress.wFragenVisited),
     countriesVisited: Array.from(state.progress.countriesVisited),
+    listeningVisited: Array.from(state.progress.listeningVisited),
     dictatScore: state.progress.dictatScore,
     dictatTotal: state.progress.dictatTotal
   };
@@ -309,8 +313,9 @@ function updateProgressUI() {
   const dictatAttemptPct = Math.min(100, Math.round((state.progress.dictatTotal / 5) * 100)); // Target is at least 5 attempts to get 100%
   const wfPct = Math.round((state.progress.wFragenVisited.size / W_FRAGEN.length) * 100);
   const cPct = Math.round((state.progress.countriesVisited.size / COUNTRIES.length) * 100);
+  const listenPct = Math.round((state.progress.listeningVisited.size / 5) * 100); // 5 listening elements (Klein, Gross, Max, Anna, Bea)
   
-  const totalProgress = Math.round((revPct + numPct + dictatAttemptPct + wfPct + cPct) / 5);
+  const totalProgress = Math.round((revPct + numPct + dictatAttemptPct + wfPct + cPct + listenPct) / 6);
 
   document.getElementById('progressReview').textContent = `${revPct}%`;
   document.getElementById('progressNumbers').textContent = `${numPct}%`;
@@ -322,6 +327,11 @@ function updateProgressUI() {
   
   document.getElementById('progressWFragen').textContent = `${wfPct}%`;
   document.getElementById('progressCountries').textContent = `${cPct}%`;
+
+  const listenLabelEl = document.getElementById('progressListening');
+  if (listenLabelEl) {
+    listenLabelEl.textContent = `${listenPct}%`;
+  }
   
   // Dictat Highscore Display
   const dictatScoreEl = document.getElementById('progressDictat');
@@ -811,6 +821,150 @@ function showReviewQuizResults() {
   // Save progress
   state.progress.reviewAlphabetVisited.add('review_quiz_completed');
   saveProgress();
+}
+
+function setupListeningExercises() {
+  const listenKleinBtn = document.getElementById('listenKleinBtn');
+  const listenGrossBtn = document.getElementById('listenGrossBtn');
+  const listenMaxBtn = document.getElementById('listenMaxBtn');
+  const listenAnnaBtn = document.getElementById('listenAnnaBtn');
+  const listenBeaBtn = document.getElementById('listenBeaBtn');
+  
+  const checkBtn = document.getElementById('checkListeningBtn');
+  const resetBtn = document.getElementById('resetListeningBtn');
+
+  if (!listenKleinBtn) return;
+
+  const speakSlowly = (text) => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    utterance.rate = 0.65; // Speak slowly for listening dictation
+    if (state.germanVoice) {
+      utterance.voice = state.germanVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+  };
+
+  listenKleinBtn.addEventListener('click', () => {
+    speakSlowly("Herr Klein. Meine Handynummer ist: null, eins, fünf, sieben, acht, drei, neun, zwei, vier, null, sechs, eins.");
+    state.progress.listeningVisited.add('klein');
+    saveProgress();
+  });
+
+  listenGrossBtn.addEventListener('click', () => {
+    speakSlowly("Frau Groß. Meine Handynummer ist: null, eins, sieben, zwei, fünf, neun, eins, sechs, drei, acht, vier, null.");
+    state.progress.listeningVisited.add('gross');
+    saveProgress();
+  });
+
+  listenMaxBtn.addEventListener('click', () => {
+    speakSlowly("Max. Meine Handynummer ist: null, eins, fünf, eins, acht, neun, neun, vier, vier, fünf, acht, drei.");
+    state.progress.listeningVisited.add('max');
+    saveProgress();
+  });
+
+  listenAnnaBtn.addEventListener('click', () => {
+    speakSlowly("Anna. Meine Handynummer ist: null, eins, sieben, eins, drei, vier, eins, zwei, zwei, sechs, sechs, neun, eins.");
+    state.progress.listeningVisited.add('anna');
+    saveProgress();
+  });
+
+  listenBeaBtn.addEventListener('click', () => {
+    speakSlowly("Mein Nachname ist Kretschmar: k, r, e, t, s, c, h, m, a, r.");
+    state.progress.listeningVisited.add('bea');
+    saveProgress();
+  });
+
+  checkBtn.addEventListener('click', () => {
+    const inputKlein = document.getElementById('inputKlein');
+    const inputGross = document.getElementById('inputGross');
+    const inputMax = document.getElementById('inputMax');
+    const inputAnna = document.getElementById('inputAnna');
+    const inputBea = document.getElementById('inputBea');
+
+    const fk = document.getElementById('feedbackKlein');
+    const fg = document.getElementById('feedbackGross');
+    const fm = document.getElementById('feedbackMax');
+    const fa = document.getElementById('feedbackAnna');
+    const fb = document.getElementById('feedbackBea');
+
+    const valKlein = inputKlein.value.replace(/\s+/g, '');
+    const valGross = inputGross.value.replace(/\s+/g, '');
+    const valMax = inputMax.value.replace(/\s+/g, '');
+    const valAnna = inputAnna.value.replace(/\s+/g, '');
+    const valBea = inputBea.value.trim().toLowerCase();
+
+    // Herr Klein: 0157 8392 4061
+    const isKleinCorrect = valKlein === "015783924061";
+    fk.style.display = 'block';
+    if (isKleinCorrect) {
+      fk.className = "quiz-feedback correct";
+      fk.innerHTML = "Chính xác! Herr Klein: <strong>0157 8392 4061</strong>";
+    } else {
+      fk.className = "quiz-feedback wrong";
+      fk.innerHTML = `Chưa đúng! Đáp án đúng: <strong>0157 8392 4061</strong>`;
+    }
+
+    // Frau Groß: 0172 5916 3840
+    const isGrossCorrect = valGross === "017259163840";
+    fg.style.display = 'block';
+    if (isGrossCorrect) {
+      fg.className = "quiz-feedback correct";
+      fg.innerHTML = "Chính xác! Frau Groß: <strong>0172 5916 3840</strong>";
+    } else {
+      fg.className = "quiz-feedback wrong";
+      fg.innerHTML = `Chưa đúng! Đáp án đúng: <strong>0172 5916 3840</strong>`;
+    }
+
+    // Max: 0151 89944583
+    const isMaxCorrect = valMax === "015189944583";
+    fm.style.display = 'block';
+    if (isMaxCorrect) {
+      fm.className = "quiz-feedback correct";
+      fm.innerHTML = "Chính xác! Max: <strong>0151 8994 4583</strong>";
+    } else {
+      fm.className = "quiz-feedback wrong";
+      fm.innerHTML = `Chưa đúng! Đáp án đúng: <strong>0151 8994 4583</strong>`;
+    }
+
+    // Anna: 0171 341226691
+    const isAnnaCorrect = valAnna === "0171341226691";
+    fa.style.display = 'block';
+    if (isAnnaCorrect) {
+      fa.className = "quiz-feedback correct";
+      fa.innerHTML = "Chính xác! Anna: <strong>0171 3412 26691</strong>";
+    } else {
+      fa.className = "quiz-feedback wrong";
+      fa.innerHTML = `Chưa đúng! Đáp án đúng: <strong>0171 3412 26691</strong>`;
+    }
+
+    // Bea Kretschmar
+    const isBeaCorrect = valBea === "kretschmar";
+    fb.style.display = 'block';
+    if (isBeaCorrect) {
+      fb.className = "quiz-feedback correct";
+      fb.innerHTML = "Chính xác! Họ của Bea: <strong>Kretschmar</strong>";
+    } else {
+      fb.className = "quiz-feedback wrong";
+      fb.innerHTML = `Chưa đúng! Đáp án đúng: <strong>Kretschmar</strong>`;
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    document.getElementById('inputKlein').value = '';
+    document.getElementById('inputGross').value = '';
+    document.getElementById('inputMax').value = '';
+    document.getElementById('inputAnna').value = '';
+    document.getElementById('inputBea').value = '';
+
+    document.getElementById('feedbackKlein').style.display = 'none';
+    document.getElementById('feedbackGross').style.display = 'none';
+    document.getElementById('feedbackMax').style.display = 'none';
+    document.getElementById('feedbackAnna').style.display = 'none';
+    document.getElementById('feedbackBea').style.display = 'none';
+  });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
