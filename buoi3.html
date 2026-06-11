@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tiếng Đức A1 - Buổi 3 (Số Đếm 21-100, Sở Thích & Nghề Nghiệp)</title>
+  <meta name="description" content="Tài liệu học tiếng Đức A1 Buổi 3. Ôn tập số đếm 0-20 và giao tiếp Buổi 2, học số đếm từ 21 đến 100, cách hỏi đáp sở thích, giới thiệu nghề nghiệp và các ngày trong tuần.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === Enhanced Lesson 3 Styles === */
+
+    /* Grammar callout box with accent gradient */
+    .grammar-note-box {
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f0 100%);
+      border-left: 5px solid #4338ca;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-top: 1px solid #e8e8e8;
+      border-right: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
+      position: relative;
+    }
+    .grammar-note-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5px;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, #4338ca 0%, #6366f1 100%);
+      border-radius: 3px 0 0 3px;
+    }
+    .grammar-note-title {
+      font-weight: 800;
+      margin-bottom: 0.65rem;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      letter-spacing: -0.2px;
+      color: #111;
+    }
+
+    /* Dictation box */
+    .dictat-box {
+      margin-top: 1.5rem;
+      background: var(--bg-page);
+      border: 2px dashed #000;
+      padding: 1.5rem;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .dictat-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    /* Section headings with decorative underline */
+    #hobbysTab h3, #numbersTab h3 {
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    #hobbysTab h3::after, #numbersTab h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #4338ca;
+      border-radius: 2px;
+    }
+
+    /* Listening exercise cards */
+    #listeningHobbysContainer > div {
+      transition: all 0.2s ease;
+      border-radius: 6px !important;
+    }
+    #listeningHobbysContainer > div:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+
+    /* Verb conjugation cards */
+    .conjugation-container .verb-card {
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+    .conjugation-container .verb-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .conjugation-container .verb-header {
+      background: linear-gradient(135deg, #fafafa, #f0f0f0);
+      margin: -1.5rem -1.5rem 1rem -1.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: 6px 6px 0 0;
+      border-bottom: 2px solid #4338ca;
+    }
+    .conjugation-container .conjugation-row:hover {
+      background: linear-gradient(90deg, #f8f8f4, transparent);
+    }
+
+    /* Number milestone cards (multiples of 10) */
+    .number-milestone {
+      background: linear-gradient(135deg, #2d3a8c, #4f46e5) !important;
+      color: #fff !important;
+      border-color: #3730a3 !important;
+    }
+    .number-milestone .chars { color: #fff !important; }
+    .number-milestone .ipa { color: #e0e7ff !important; }
+    .number-milestone .play-icon { color: #a5b4fc !important; }
+
+    /* Preference expression cards */
+    #preferenceExpContainer .phrase-card,
+    #hobbysGrid .phrase-card,
+    #berufeGrid .phrase-card {
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    #preferenceExpContainer .phrase-card:hover,
+    #hobbysGrid .phrase-card:hover,
+    #berufeGrid .phrase-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Exercise containers */
+    .exercise-container {
+      border-radius: 8px !important;
+      border-style: solid !important;
+      border-width: 1.5px !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    /* Progress bar gradient */
+    .progress-bar-inner {
+      background: linear-gradient(90deg, #000 0%, #333 100%) !important;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* Section subtitle */
+    .section-subtitle {
+      border-left: 3px solid #ddd;
+      padding-left: 0.75rem;
+    }
+
+    /* Check button hover effect */
+    #checkListeningHobbysBtn {
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    #checkListeningHobbysBtn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Quiz box shadow */
+    .quiz-container {
+      border-radius: 8px !important;
+      box-shadow: 4px 4px 0px #000 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <div class="flag-logo">
+        <div class="flag-stripe stripe-black"></div>
+        <div class="flag-stripe stripe-red"></div>
+        <div class="flag-stripe stripe-gold"></div>
+      </div>
+      <span class="logo-text">Deutsch A1</span>
+    </div>
+    <div class="controls-container">
+      <!-- Lesson selector dropdown -->
+      <select class="form-input" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; font-weight: 700; border: 1.5px solid #000; border-radius: var(--radius-sm); cursor: pointer;" onchange="window.location.href=this.value">
+        <option value="index.html">Buổi 1</option>
+        <option value="buoi2.html">Buổi 2</option>
+        <option value="buoi3.html" selected>Buổi 3</option>
+      </select>
+      <div class="tts-status" id="ttsStatus" title="Trạng thái giọng đọc phát âm chuẩn">
+        <span class="tts-indicator"></span> Đang tải giọng đọc...
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="dashboard">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      Tổng quan
+    </button>
+    <button class="tab-btn" data-tab="review">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5" />
+      </svg>
+      1. Ôn tập Buổi 2
+    </button>
+    <button class="tab-btn" data-tab="numbers">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+      </svg>
+      2. Số đếm 21 - 100
+    </button>
+    <button class="tab-btn" data-tab="hobbys">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+      3. Sở thích & Động từ
+    </button>
+    <button class="tab-btn" data-tab="wochentage">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      4. Các ngày trong tuần
+    </button>
+    <button class="tab-btn" data-tab="speaking">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+      5. Giao tiếp & Luyện nói
+    </button>
+  </nav>
+
+  <!-- MAIN AREA -->
+  <main>
+    
+    <!-- DASHBOARD TAB -->
+    <div id="dashboardTab" class="tab-content active">
+      <div class="dashboard-grid">
+        <div class="welcome-card">
+          <h1>Lộ trình học <span>Buổi 3</span></h1>
+          <p>Chào mừng bạn đến với nội dung bài học Tiếng Đức A1 - Buổi 3. Ở bài học này, chúng ta sẽ ôn tập nền tảng buổi trước và mở rộng thêm kiến thức giao tiếp cốt lõi về cách ghép số hàng chục, hỏi đáp sở thích cá nhân, nghề nghiệp và thời gian tuần:</p>
+          
+          <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Phần 1 (Ôn tập):</strong> Xem lại số đếm 0 - 20 và thực hành trắc nghiệm ôn tập kiến thức giao tiếp của Buổi 2.</li>
+            <li><strong>Phần 2 (Mới):</strong> Cách đếm và viết các số từ 21 đến 100 tiếng Đức với giọng đọc mẫu chuẩn và công cụ ghép số tự động.</li>
+            <li><strong>Phần 3 (Netzwerk Neu A1, Kap.2):</strong> 11 từ vựng sở thích, cách diễn đạt mức độ yêu thích (gern/sehr gern/nicht so gern), <strong>bài nghe chuẩn Audio 1.14-16</strong> (Emily, Boris, Eva), và bảng chia 4 động từ (kochen, arbeiten, lesen, sprechen).</li>
+            <li><strong>Phần 4 (Mới):</strong> Tên gọi 7 ngày trong tuần và cách sử dụng giới từ thời gian "am" đi kèm.</li>
+            <li><strong>Phần 5 (Luyện tập):</strong> Công cụ luyện nói tự động dựa trên sở thích và công việc thực tế của bạn.</li>
+          </ul>
+
+          <div class="welcome-buttons">
+            <button class="btn-primary" id="startLearnBtn">
+              Bắt đầu bài học
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <a href="buoi2.html" class="btn-secondary">Học lại Buổi 2</a>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div>
+            <h2>Tiến độ Buổi 3</h2>
+            <div class="progress-stats">
+              <div>
+                <div class="stat-row">
+                  <span class="stat-label">1. Ôn tập Buổi 2</span>
+                  <span class="stat-value" id="progressReview">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">2. Số đếm 21 - 100</span>
+                  <span class="stat-value" id="progressNumbers">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">3. Sở thích & Nghề nghiệp</span>
+                  <span class="stat-value" id="progressHobbys">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">4. Các ngày trong tuần</span>
+                  <span class="stat-value" id="progressWochentage">0%</span>
+                </div>
+                <div class="stat-row">
+                  <span class="stat-label">5. Giao tiếp & Luyện nói</span>
+                  <span class="stat-value" id="progressSpeaking">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="progress-bar-outer" style="margin-top: 1.5rem;">
+              <div class="progress-bar-inner" id="mainProgressBar"></div>
+            </div>
+            <p id="welcomeProgressText" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right;">Bạn đã hoàn thành 0% lộ trình</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: REVIEW (ÔN TẬP BUỔI 2) -->
+    <div id="reviewTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5" />
+        </svg>
+        Phần 1: Ôn tập kỹ kiến thức Buổi 2
+      </div>
+      <p class="section-subtitle">Ôn tập toàn diện Số đếm 0 - 20, Bộ ba W-Fragen, Quốc gia & Ngôn ngữ, và luyện nghe số điện thoại.</p>
+      
+      <!-- 1.1. Số đếm từ 0 đến 20 -->
+      <div class="exercise-container" style="margin-bottom: 2rem;">
+        <h3 class="exercise-title" style="margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem;">1.1. Số đếm từ 0 đến 20 (Zahlen 0 - 20)</h3>
+        <p class="exercise-desc">Nhấp vào từng thẻ số để nghe phát âm mẫu chuẩn.</p>
+        <div class="alphabet-grid" id="reviewNumbersGrid">
+          <!-- Injected via app3.js -->
+        </div>
+      </div>
+
+      <!-- 1.2. Bộ ba W-Fragen -->
+      <div class="exercise-container" style="margin-bottom: 2rem;">
+        <h3 class="exercise-title" style="margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem;">1.2. Bộ ba từ để hỏi W-Fragen (Wie, Wo, Woher)</h3>
+        <p class="exercise-desc">Bấm vào các câu hỏi để nghe phát âm cả câu hỏi và câu trả lời để ôn lại vị trí động từ đứng thứ 2.</p>
+        <div class="rules-container" id="reviewWFragenContainer">
+          <!-- Injected via app3.js -->
+        </div>
+      </div>
+
+      <!-- 1.3. Đất nước & Ngôn ngữ -->
+      <div class="exercise-container" style="margin-bottom: 2rem;">
+        <h3 class="exercise-title" style="margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem;">1.3. Đất nước & Ngôn ngữ (Länder & Sprachen)</h3>
+        <p class="exercise-desc">Bấm vào các nước để nghe ví dụ cách dùng giới từ "aus" / "aus der" và cách chia động từ tương ứng.</p>
+        <div class="phrases-grid" id="reviewCountriesGrid">
+          <!-- Injected via app3.js -->
+        </div>
+      </div>
+
+      <!-- 1.4. Luyện nghe viết số & Số điện thoại -->
+      <div class="exercise-container" style="margin-bottom: 2rem;">
+        <h3 class="exercise-title" style="margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem;">1.4. Luyện nghe viết số & Số điện thoại</h3>
+        <p class="exercise-desc">Thực hành nghe và tự gõ lại để ghi nhớ sâu sắc mặt chữ và âm điệu.</p>
+        
+        <!-- Zahlen Diktat Mini Game -->
+        <div class="dictat-box" style="margin-top: 1rem; border-color: var(--border-light); background: var(--bg-highlight); text-align: left; padding: 1.25rem;">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; font-family: inherit;">A. Luyện nghe viết số ngẫu nhiên (Zahlen Diktat)</h4>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 1rem 0;">Nghe số ngẫu nhiên từ 0 đến 20 và gõ lại bằng số hoặc chữ tiếng Đức để kiểm tra.</p>
+          
+          <div class="dictat-inputs" style="justify-content: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn-primary" id="reviewDictatPlayBtn" style="padding: 0.5rem 1rem;">
+              🔊 Nghe số ngẫu nhiên
+            </button>
+            <input type="text" id="reviewDictatInput" class="form-input" style="width: 150px; text-align: center; font-size: 1.1rem; font-weight: bold;" placeholder="Ví dụ: 7 hoặc sieben" disabled>
+            <button class="btn-secondary" id="reviewDictatCheckBtn" style="padding: 0.5rem 1rem;" disabled>Kiểm tra</button>
+          </div>
+          <div id="reviewDictatScoreText" style="font-weight: 700; margin-top: 0.5rem; font-size: 0.95rem;">Điểm số: 0/0</div>
+          <div class="quiz-feedback" id="reviewDictatFeedback" style="display: none; padding: 0.5rem 0.75rem; margin-top: 0.5rem; max-width: 500px;"></div>
+        </div>
+
+        <!-- Handynummer Hören -->
+        <div style="margin-top: 1.5rem; border: 1.5px solid var(--border-light); padding: 1.25rem; border-radius: var(--radius-sm); background: var(--bg-page);">
+          <h4 style="margin: 0 0 0.5rem 0; font-size: 1rem; font-family: inherit;">B. Luyện nghe số điện thoại di động (Bài nghe trang 13 & 14)</h4>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0 0 1rem 0;">Bấm nghe các đoạn thoại đọc chậm số điện thoại di động (Handynummer) của các nhân vật và điền số tương ứng.</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <!-- Klein -->
+            <div style="background: var(--bg-highlight); padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-weight: bold; font-size: 0.9rem;">Herr Klein:</span>
+                <button class="btn-primary" id="reviewListenKleinBtn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">🔊 Nghe số ĐT</button>
+              </div>
+              <input type="text" id="reviewInputKlein" class="form-input" placeholder="Nhập dãy số viết liền..." style="width: 100%; text-align: center; font-family: monospace; font-size: 0.95rem;">
+              <div id="reviewFeedbackKlein" class="quiz-feedback" style="display: none; margin-top: 0.5rem; font-size: 0.8rem; padding: 0.35rem 0.5rem;"></div>
+            </div>
+            
+            <!-- Gross -->
+            <div style="background: var(--bg-highlight); padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-weight: bold; font-size: 0.9rem;">Frau Groß:</span>
+                <button class="btn-primary" id="reviewListenGrossBtn" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">🔊 Nghe số ĐT</button>
+              </div>
+              <input type="text" id="reviewInputGross" class="form-input" placeholder="Nhập dãy số viết liền..." style="width: 100%; text-align: center; font-family: monospace; font-size: 0.95rem;">
+              <div id="reviewFeedbackGross" class="quiz-feedback" style="display: none; margin-top: 0.5rem; font-size: 0.8rem; padding: 0.35rem 0.5rem;"></div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 1.25rem;">
+            <button class="btn-primary" id="reviewCheckListeningBtn" style="padding: 0.5rem 1.5rem; font-size: 0.95rem;">Kiểm tra kết quả nghe</button>
+            <button class="btn-secondary" id="reviewResetListeningBtn" style="padding: 0.35rem 1rem; font-size: 0.8rem; margin-top: 0.5rem; display: inline-block;">Làm lại bài nghe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.5. Trắc nghiệm ôn tập tổng hợp -->
+      <div class="quiz-container" style="margin-top: 2.5rem; max-width: 100%; border: 2px solid #000; border-radius: var(--radius-md); box-shadow: 4px 4px 0px #000; background: var(--bg-page); padding: 1.5rem 1.75rem;">
+        <div class="quiz-header" style="border-bottom: 2px solid #000; margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
+          <span class="quiz-title" style="font-size: 1.15rem;">1.5. Trắc nghiệm ôn tập tổng hợp Buổi 2</span>
+          <span class="quiz-progress-text" id="reviewQuizProgress" style="font-size: 0.8rem; font-family: monospace;">Câu 1/15</span>
+        </div>
+        
+        <div id="reviewQuizQuestionView">
+          <div class="quiz-question-box" style="padding: 0;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <p class="quiz-question-text" id="reviewQuizQuestionText" style="font-size: 1.1rem; font-weight: 700; margin: 0;">Loading question...</p>
+              <button class="phrase-speak-btn" id="reviewQuizSpeakQ" style="display: none; padding: 0.25rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 12px; height: 12px;">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="quiz-options" id="reviewQuizOptions">
+              <!-- Dynamically populated -->
+            </div>
+            
+            <div class="quiz-feedback" id="reviewQuizFeedback" style="display: none; margin-top: 1rem; padding: 0.75rem;"></div>
+          </div>
+          
+          <div class="quiz-actions" style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+            <button class="btn-primary" id="reviewQuizNextBtn" style="display: none;">Câu tiếp theo</button>
+          </div>
+        </div>
+
+        <!-- Result screen for review quiz -->
+        <div id="reviewQuizResultView" class="quiz-result" style="display: none; text-align: center; padding: 1rem 0;">
+          <h4 style="font-size: 1.4rem; font-family: var(--font-serif); margin-bottom: 0.5rem;">Kết quả ôn tập</h4>
+          <div class="result-score" id="reviewQuizFinalScore" style="font-size: 2.5rem; font-weight: 800; border: 2px solid #000; display: inline-block; padding: 0.25rem 1.5rem; margin-bottom: 0.5rem;">0/15</div>
+          <p class="result-feedback-text" id="reviewQuizFeedbackMsg" style="font-size: 0.95rem; margin-bottom: 1rem;">Tuyệt vời!</p>
+          <button class="btn-primary" id="reviewQuizRestartBtn" style="margin: 0 auto;">Luyện tập lại</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: NUMBERS 21 - 100 -->
+    <div id="numbersTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+        </svg>
+        Số đếm từ 21 đến 100 (Zahlen 21 - 100)
+      </div>
+      <p class="section-subtitle">Học quy tắc ghép số ngược độc đáo của tiếng Đức (Hàng đơn vị + und + Hàng chục). Bấm vào thẻ để nghe phát âm mẫu.</p>
+
+      <div class="grammar-note-box">
+        <div class="grammar-note-title">
+          💡 Quy tắc ghép số hàng chục trong tiếng Đức:
+        </div>
+        <p style="font-size: 0.85rem; line-height: 1.7; color: var(--text-muted); margin: 0;">
+          - Từ 21 trở đi, ta đọc và viết <strong>số hàng đơn vị trước</strong>, rồi đến từ <strong>"und"</strong> (và), sau đó mới đến <strong>số hàng chục</strong>. Viết liền không cách.<br>
+          - <strong>Ví dụ:</strong> 21 = ein (bỏ 's' của eins) + und + zwanzig (20) = <strong>einundzwanzig</strong>.<br>
+          - <strong>Ví dụ:</strong> 25 = fünf + und + zwanzig = <strong>fünfundzwanzig</strong>.<br>
+          - Chú ý các mốc hàng chục: 20 (<em>zwanzig</em>), 30 (<em>dreißig</em> - đuôi ßig), 40 (<em>vierzig</em>), 50 (<em>fünfzig</em>), 60 (<em>sechzig</em> - bỏ 's' của sechs), 70 (<em>siebzig</em> - bỏ 'en' của sieben), 80 (<em>achtzig</em>), 90 (<em>neunzig</em>), 100 (<em>hundert</em>).
+        </p>
+      </div>
+
+      <div class="alphabet-grid" id="numbersGrid21">
+        <!-- Injected via app3.js -->
+      </div>
+
+      <!-- DYNAMIC NUMBER CONSTRUCTOR -->
+      <div class="exercise-container" style="margin-top: 2rem;">
+        <h3 class="exercise-title">Công cụ ghép số tự động</h3>
+        <p class="exercise-desc">Nhập một số bất kỳ từ 21 đến 99, hệ thống sẽ tự động dịch sang chữ viết tiếng Đức tương ứng và phát âm cho bạn nghe.</p>
+        
+        <div class="dictat-inputs">
+          <input type="number" id="numberInput" class="form-input" style="width: 150px; text-align: center; font-size: 1.2rem; font-weight: bold;" placeholder="21 - 99" min="21" max="99">
+          <button class="btn-primary" id="numberConvertBtn">Ghép & Phát âm</button>
+        </div>
+        
+        <div class="exercise-preview-box" id="numberOutputBox" style="display: none; margin-top: 1rem;">
+          <div class="exercise-preview-header">Chữ viết tiếng Đức:</div>
+          <p class="exercise-preview-text" id="numberOutputText" style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #000;"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: HOBBYS & BERUFE (Kapitel 2: Freunde, Kollegen und ich) -->
+    <div id="hobbysTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        Freunde, Kollegen und ich (Sở thích &amp; Chia động từ)
+      </div>
+      <p class="section-subtitle">Netzwerk Neu A1 - Kapitel 2 (trang 18 - 20): Nói về sở thích, cách chia động từ theo ngôi, và luyện nghe chuẩn.</p>
+
+      <div class="grammar-note-box">
+        <div class="grammar-note-title">🗣️ Mẫu câu giao tiếp cốt lõi:</div>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); margin: 0;">
+          - <strong>Hỏi sở thích:</strong> <em>Was sind deine Hobbys?</em> (Số nhiều) hoặc <em>Was ist dein Hobby?</em> (Số ít).<br>
+          - <strong>Trả lời:</strong> <em>Meine Hobbys sind...</em> hoặc dùng động từ kèm <strong>"gern"</strong>: <em>Ich lese gern.</em><br>
+          - <strong>Hỏi người khác:</strong> <em>Hörst du gern Musik?</em> / <em>Schwimmst du gern?</em><br>
+          - <strong>Mức độ:</strong> <em>Ja, sehr gern!</em> / <em>Ja, gern.</em> / <em>Es geht so.</em> / <em>Nein, nicht so gern.</em>
+        </p>
+      </div>
+
+      <!-- 3.1 -->
+      <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; font-family: var(--font-serif);">3.1. Từ vựng về Sở thích (Hobbys) — Trang 18-19</h3>
+      <p class="exercise-desc">Bấm vào thẻ để nghe phát âm. 11 từ vựng sở thích từ sách Netzwerk Neu A1, Kapitel 2.</p>
+      <div class="phrases-grid" id="hobbysGrid"><!-- Injected via app3.js --></div>
+
+      <!-- 3.2 -->
+      <h3 style="margin-top: 2rem; margin-bottom: 0.75rem; font-family: var(--font-serif);">3.2. Cách diễn đạt mức độ yêu thích — Bài 2b (Trang 19)</h3>
+      <div class="grammar-note-box" style="border-left-color: #555;">
+        <div class="grammar-note-title">💬 Mẫu hỏi đáp về sở thích:</div>
+        <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin: 0;">
+          <strong>Hỏi:</strong> <em>Hörst du gern Musik?</em> / <em>Gehst du gern ins Kino?</em> / <em>Liest du gern?</em><br>
+          <strong>Trả lời theo 4 mức độ:</strong>
+        </p>
+      </div>
+      <div class="phrases-grid" id="preferenceExpContainer" style="margin-top: 0.75rem;"><!-- Injected --></div>
+
+      <!-- 3.3 -->
+      <h3 style="margin-top: 2rem; margin-bottom: 0.75rem; font-family: var(--font-serif);">3.3. 🎧 Bài nghe: Was machen die Leute gern? (Audio 1.14-16) — Trang 18</h3>
+      <p class="exercise-desc">Bấm "Nghe" để nghe từng nhân vật giới thiệu sở thích, sau đó đánh dấu đúng.</p>
+      <div style="display: grid; gap: 1rem;" id="listeningHobbysContainer"><!-- Injected --></div>
+      <div style="text-align: center; margin-top: 1.25rem;">
+        <button class="btn-primary" id="checkListeningHobbysBtn" style="padding: 0.5rem 1.5rem;">Kiểm tra đáp án bài nghe</button>
+      </div>
+
+      <!-- 3.4 -->
+      <h3 style="margin-top: 2.5rem; margin-bottom: 0.75rem; font-family: var(--font-serif);">3.4. Bảng chia động từ (Verben und Personalpronomen) — Trang 20</h3>
+      <p class="exercise-desc">Bấm vào từng dòng để nghe. Chú ý biến đổi nguyên âm ở ngôi du/er với động từ bất quy tắc.</p>
+      <div class="conjugation-container" id="verbConjugationContainer"><!-- Injected --></div>
+    </div>
+
+    <!-- TAB 4: WOCHENTAGE -->
+    <div id="wochentageTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Các ngày trong tuần (Wochentage)
+      </div>
+      <p class="section-subtitle">Tên gọi 7 ngày trong tuần từ Thứ Hai đến Chủ Nhật. Click vào để nghe phát âm mẫu.</p>
+
+      <div class="grammar-note-box" style="border-left-color: #555555;">
+        <div class="grammar-note-title">
+          📅 Giới từ chỉ thời gian: "am"
+        </div>
+        <p style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted); margin: 0;">
+          - Tất cả các ngày trong tuần tiếng Đức đều mang giống đực (danh từ đi với **der**).<br>
+          - Khi muốn nói **"vào thứ mấy"** (ví dụ: vào Thứ Hai, vào cuối tuần), ta sử dụng giới từ **"am"** (viết tắt của *an dem*).<br>
+          - **Ví dụ:** *am Montag* (vào thứ Hai), *am Wochenende* (vào cuối tuần).
+        </p>
+      </div>
+
+      <div class="alphabet-grid" id="wochentageGrid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
+        <!-- Injected via app3.js -->
+      </div>
+    </div>
+
+    <!-- TAB 5: SPEAKING PRACTICE -->
+    <div id="speakingTab" class="tab-content">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        Tập giới thiệu bản thân (Sở thích, Tuổi, Nơi ở, Quê quán)
+      </div>
+      <p class="section-subtitle">Điền thông tin của bạn để tạo bài giới thiệu bản thân đầy đủ và bấm để nghe phát âm chuẩn.</p>
+
+      <div class="exercise-container">
+        <div class="exercise-inputs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+          <div class="form-group">
+            <label class="form-label" for="inputName">Họ và Tên:</label>
+            <input type="text" id="inputName" class="form-input" value="Minh" placeholder="Nhập tên của bạn...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputAge">Tuổi (21 - 100):</label>
+            <input type="number" id="inputAge" class="form-input" value="25" min="21" max="100">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputOrigin">Quê quán (Quốc gia/Tỉnh):</label>
+            <input type="text" id="inputOrigin" class="form-input" value="Vietnam" placeholder="Ví dụ: Vietnam, Hanoi...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="inputResidence">Nơi ở hiện tại (Thành phố):</label>
+            <input type="text" id="inputResidence" class="form-input" value="Hanoi" placeholder="Ví dụ: Hanoi, Ho-Chi-Minh-Stadt...">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label" for="selectHobby">Sở thích:</label>
+            <select id="selectHobby" class="form-input" style="cursor: pointer;">
+              <option value="lesen gern">📖 Đọc sách (lesen)</option>
+              <option value="schwimmen gern">🏊 Bơi lội (schwimmen)</option>
+              <option value="kochen gern">🍳 Nấu ăn (kochen)</option>
+              <option value="reisen gern">✈️ Du lịch (reisen)</option>
+              <option value="spielen gern Fußball">⚽ Đá bóng (Fußball spielen)</option>
+              <option value="hören gern Musik">🎧 Nghe nhạc (Musik hören)</option>
+              <option value="tanzen gern">💃 Khiêu vũ (tanzen)</option>
+              <option value="singen gern">🎤 Hát (singen)</option>
+              <option value="fotografieren gern">📷 Chụp ảnh (fotografieren)</option>
+              <option value="joggen gern">🏃 Chạy bộ (joggen)</option>
+              <option value="gehen gern ins Kino">🎬 Đi xem phim (ins Kino gehen)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="exercise-preview-box" style="margin-top: 1.5rem; background: #fafafa; border: 1.5px solid #ddd; padding: 1.5rem; border-radius: 6px;">
+          <div class="exercise-preview-header" style="font-weight: 700; margin-bottom: 0.75rem; color: #555;">Bài tự giới thiệu hoàn chỉnh của bạn:</div>
+          <p class="exercise-preview-text" id="builderPreviewText" style="font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.8; color: #111; margin-bottom: 1.25rem;">
+            <!-- Generated dynamically -->
+          </p>
+          <button class="btn-primary exercise-speak-btn" id="builderSpeakBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            Phát âm bài tự giới thiệu này
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Học tiếng Đức A1 cùng <strong>Cô Trần Thị Thu Hiền</strong> (ĐT: 0826273766)</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">Được thiết kế rõ ràng, khoa học dưới dạng sách giáo khoa điện tử hỗ trợ nghe trực tuyến.</p>
+  </footer>
+
+  <script src="app3.js"></script>
+</body>
+</html>
