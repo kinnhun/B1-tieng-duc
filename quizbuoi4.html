@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deutsch A1 - Bài Kiểm Tra Tổng Hợp Buổi 1 & 2</title>
+  <meta name="description" content="Bài kiểm tra tổng hợp 60 phút ôn tập tiếng Đức A1 Buổi 4 gồm 100 câu hỏi chi tiết về viết câu, từ để hỏi W-Fragen, số đếm 0-100 và chia động từ.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom CSS enhancements for Lesson 4 Test */
+    .timer-container {
+      background: #000000;
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-family: monospace;
+      font-size: 1.1rem;
+      border: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .timer-time {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #ff4444;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { opacity: 0.8; }
+      to { opacity: 1; }
+    }
+    
+    .exercise-block {
+      background: var(--bg-page);
+      border: 2px solid #000000;
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 2.5rem;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+    }
+    .exercise-header-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 800;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .exercise-header-title svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .question-card {
+      background: var(--bg-page);
+      border: 1px solid #cccccc;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      border-radius: var(--radius-sm);
+      position: relative;
+      transition: border-color 0.2s ease;
+    }
+    .question-card:hover {
+      border-color: #000000;
+    }
+    .question-number {
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0.25rem;
+    }
+    .question-prompt {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .question-instruction {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .cue-box {
+      background: var(--bg-highlight);
+      border: 1px dashed #666;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: monospace;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Result summary card */
+    .results-summary-card {
+      border: 3px double #000000;
+      background: var(--success-bg);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 2rem;
+      display: none;
+    }
+    .results-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.5rem;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .results-item {
+      background: #ffffff;
+      border: 1.5px solid #000000;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+    }
+    .results-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .results-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      font-family: monospace;
+    }
+    .results-score-total {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-align: center;
+      margin: 1rem 0;
+      font-family: monospace;
+      border: 2px solid #000;
+      display: inline-block;
+      padding: 0.25rem 2rem;
+      background: #ffffff;
+    }
+    .results-feedback-msg {
+      font-size: 1.1rem;
+      text-align: center;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    /* Validation states */
+    .correct-answer-display {
+      display: none;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--success-bg);
+      border: var(--success-border);
+      color: var(--success-text);
+      border-radius: var(--radius-sm);
+    }
+    .wrong-answer-display {
+      display: none;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--error-bg);
+      border: var(--error-border);
+      color: var(--error-text);
+      border-radius: var(--radius-sm);
+    }
+    
+    input.correct {
+      border: 2px solid var(--success-text) !important;
+      background: var(--success-bg) !important;
+      color: var(--success-text) !important;
+    }
+    input.wrong {
+      border: 2px solid var(--error-text) !important;
+      background: var(--error-bg) !important;
+      color: var(--error-text) !important;
+    }
+    select.correct {
+      border: 2px solid var(--success-text) !important;
+      background: var(--success-bg) !important;
+    }
+    select.wrong {
+      border: 2px solid var(--error-text) !important;
+      background: var(--error-bg) !important;
+    }
+
+    /* Submit section floating/bottom */
+    .submit-section {
+      background: var(--bg-highlight);
+      border: 2px solid #000000;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: 4px 4px 0px #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-area">
+     
+      <span class="logo-text">Deutsch A1</span>
+    </div>
+    <div class="controls-container">
+      <select class="form-input" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; font-weight: 700; border: 1.5px solid #000; border-radius: var(--radius-sm); cursor: pointer;" onchange="window.location.href=this.value">
+        <option value="index.html">Buổi 1</option>
+        <option value="buoi2.html">Buổi 2</option>
+        <option value="buoi3.html">Buổi 3</option>
+        <option value="buoi4.html" selected>Buổi 4</option>
+      </select>
+      <div class="tts-status" id="ttsStatus" title="Trạng thái giọng đọc phát âm chuẩn">
+        <span class="tts-indicator"></span> Đang tải giọng đọc...
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="nav-tabs">
+    <a class="tab-btn" href="buoi4.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Quay lại Buổi 4
+    </a>
+    <button class="tab-btn active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      Đang Kiểm Tra (100 Câu Hỏi)
+    </button>
+  </nav>
+
+  <!-- MAIN AREA -->
+  <main>
+    
+    <!-- RESULTS SUMMARY (Visible after submission) -->
+    <div class="results-summary-card" id="resultsSummaryCard">
+      <h3 class="results-title">📊 KẾT QUẢ BÀI KIỂM TRA TỔNG HỢP</h3>
+      <div class="results-feedback-msg" id="resultsFeedbackMsg">Chúc mừng bạn đã hoàn thành bài kiểm tra!</div>
+      <div style="text-align: center;">
+        <span class="results-score-total" id="resultsTotalScore">0 / 100</span>
+      </div>
+      <div class="results-grid">
+        <div class="results-item">
+          <div class="results-label">Bài 1: Viết câu</div>
+          <div class="results-val" id="scoreWriting">0 / 15</div>
+        </div>
+        <div class="results-item">
+          <div class="results-label">Bài 2: Từ để hỏi</div>
+          <div class="results-val" id="scoreQuestions">0 / 20</div>
+        </div>
+        <div class="results-item">
+          <div class="results-label">Bài 3: Số đếm &amp; Nghe</div>
+          <div class="results-val" id="scoreNumbers">0 / 30</div>
+        </div>
+        <div class="results-item">
+          <div class="results-label">Bài 4: Chia động từ</div>
+          <div class="results-val" id="scoreVerbs">0 / 35</div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+        <button class="btn-secondary" id="restartTestBtn">Làm lại bài thi</button>
+        <a href="buoi4.html" class="btn-primary" style="text-decoration: none;">Về Bài Học Buổi 4</a>
+      </div>
+    </div>
+
+    <!-- EXAM AREA -->
+    <div id="testTab" class="tab-content active">
+      
+      <!-- TIMER & PROGRESS HEADER (Visible on top when doing the test) -->
+      <div class="timer-container" id="globalTimerContainer" style="display: flex; flex-direction: column; gap: 0.75rem; align-items: stretch;">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div>⏱️ <strong>BÀI KIỂM TRA TỔNG HỢP (BUỔI 1 &amp; 2)</strong></div>
+          <div>Thời gian còn lại: <span class="timer-time" id="countdownTimer">60:00</span></div>
+        </div>
+        <div style="border-top: 1px solid #333; padding-top: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%;">
+          <div style="flex-grow: 1; height: 10px; background: #222; border-radius: 5px; overflow: hidden; border: 1px solid #444;">
+            <div id="testProgressBar" style="height: 100%; width: 0%; background: #4338ca; transition: width 0.3s ease;"></div>
+          </div>
+          <span style="font-size: 0.8rem; font-family: monospace; white-space: nowrap;" id="testProgressText">Đã làm: 0/100 (0%)</span>
+        </div>
+      </div>
+
+      <!-- EXERCISE 1 -->
+      <div class="exercise-block">
+        <div class="exercise-header-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+          Bài 1: Viết câu tiếng Đức hoàn chỉnh (15 câu - 15 điểm)
+        </div>
+        <p class="section-subtitle">Sử dụng các gợi ý từ vựng cho trước hoặc dịch các câu giao tiếp cơ bản sang tiếng Đức. Hãy lưu ý viết hoa đúng các danh từ và đại từ nhân xưng trang trọng (Sie).</p>
+        
+        <div id="writingQuestionsContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- EXERCISE 2 -->
+      <div class="exercise-block">
+        <div class="exercise-header-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Bài 2: Sử dụng từ để hỏi W-Fragen phù hợp (20 câu - 20 điểm)
+        </div>
+        <p class="section-subtitle">Dựa trên câu trả lời cho trước, hãy điền từ để hỏi chính xác (Wie, Wo, Woher, Was, Wer, Welche) để hoàn thiện câu hỏi.</p>
+        
+        <div id="wFragenQuestionsContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- EXERCISE 3 -->
+      <div class="exercise-block">
+        <div class="exercise-header-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+          </svg>
+          Bài 3: Nhận biết số đếm &amp; Luyện nghe số (30 câu - 30 điểm)
+        </div>
+        <p class="section-subtitle">Phần thi gồm hai phần: đọc hiểu chữ viết số đếm và nghe ghi lại số chính xác (từ 0 đến 100).</p>
+
+        <h3 style="margin-bottom: 1rem; border-bottom: 1.5px solid #000; padding-bottom: 0.25rem; font-family: var(--font-serif);">Phần A: Điền chữ số cho từ vựng (15 câu)</h3>
+        <div id="numbersReadingContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <h3 style="margin-bottom: 1rem; border-bottom: 1.5px solid #000; padding-bottom: 0.25rem; font-family: var(--font-serif);">Phần B: Nghe phát âm và điền số tương ứng (15 câu)</h3>
+        <p class="exercise-desc">Nhấp vào nút loa 🔊 ở từng câu để nghe số tiếng Đức được đọc, sau đó điền chữ số tương ứng (ví dụ: gõ "25" thay vì "fünfundzwanzig").</p>
+        <div id="numbersListeningContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- EXERCISE 4 -->
+      <div class="exercise-block">
+        <div class="exercise-header-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+          </svg>
+          Bài 4: Chia động từ A1 cơ bản &amp; nâng cao (35 câu - 35 điểm)
+        </div>
+        <p class="section-subtitle">Chia các động từ trong ngoặc theo đúng ngôi đại từ nhân xưng tương ứng trong câu.</p>
+        
+        <div id="verbsQuestionsContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <!-- SUBMIT TEST SECTION -->
+      <div class="submit-section" id="submitSection">
+        <h3 style="margin-bottom: 0.5rem; font-family: var(--font-serif);">Bạn đã làm xong toàn bộ 100 câu hỏi?</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Hãy kéo chuột lên để rà soát lại kỹ các phần trả lời trước khi nộp bài để hệ thống tính điểm.</p>
+        <button class="btn-primary" id="submitTestBtn" style="margin: 0 auto; padding: 0.75rem 2.5rem; font-size: 1.15rem; font-weight: 800;">
+          📊 NỘP BÀI KIỂM TRA TỔNG HỢP
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Học tiếng Đức A1 cùng <strong>Cô Trần Thị Thu Hiền</strong> (ĐT: 0826273766)</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">Được thiết kế rõ ràng, khoa học dưới dạng sách giáo khoa điện tử hỗ trợ nghe trực tuyến.</p>
+  </footer>
+
+  <script src="app4_quiz.js"></script>
+</body>
+</html>
